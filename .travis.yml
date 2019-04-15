@@ -36,12 +36,23 @@ after_success:
 
 before_deploy: PKG_VERSION=$(python -c "import f5; print(f5.__version__)")
 deploy:
+  # DEPLOY TO TEST
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_S3_TEST_BUCKET
+    local_dir: docs/_build/html
+    upload_dir: f5-common-python-test/latest
+    on:
+      all_branches: true
+      repo: andreykashcheev/f5-common-python
   # DEPLOY TO STAGING
   - provider: s3
     skip_cleanup: true
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: clouddocs.f5networks.net
+    bucket: $AWS_S3_STAGE_BUCKET
     local_dir: docs/_build/html
     upload_dir: f5-common-python-stage/latest
     on:
@@ -52,7 +63,7 @@ deploy:
     skip_cleanup: true
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: clouddocs.f5.com
+    bucket: $AWS_S3_PROD_BUCKET
     local_dir: docs/_build/html
     upload_dir: f5-common-python-prod/latest
     on:
