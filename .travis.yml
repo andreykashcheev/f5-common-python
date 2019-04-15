@@ -32,9 +32,32 @@ script:
 after_success:
   - md5sum ${PKG_RELEASE_EL7} > ${PKG_RELEASE_EL7}.md5 && md5sum --check ${PKG_RELEASE_EL7}.md5
   - md5sum ${PKG_RELEASE_1404} > ${PKG_RELEASE_1404}.md5 && md5sum --check ${PKG_RELASE_1404}.md5
+  - make docker-html
 
 before_deploy: PKG_VERSION=$(python -c "import f5; print(f5.__version__)")
 deploy:
+  # DEPLOY TO STAGING
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: clouddocs.f5networks.net
+    local_dir: docs/_build/html
+    upload_dir: f5-common-python/latest
+    on:
+      all_branches: true
+      repo: andreykashcheev/f5-common-python
+  # DEPLOY TO PRODUCTION
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: clouddocs.f5.com
+    local_dir: docs/_build/html
+    upload_dir: f5-common-python/latest
+    on:
+      tags: true
+      repo: andreykashcheev/f5-common-python
   - provider: pypi
     user: $PYPI_USER
     password: $PYPI_PASSWORD
