@@ -43,7 +43,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: clouddocs.f5networks.net
     local_dir: docs/_build/html
-    upload_dir: f5-common-python/latest
+    upload_dir: f5-common-python-stage/latest
     on:
       all_branches: true
       repo: andreykashcheev/f5-common-python
@@ -54,7 +54,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: clouddocs.f5.com
     local_dir: docs/_build/html
-    upload_dir: f5-common-python/latest
+    upload_dir: f5-common-python-prod/latest
     on:
       tags: true
       repo: andreykashcheev/f5-common-python
