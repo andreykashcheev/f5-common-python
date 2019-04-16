@@ -91,11 +91,4 @@ completed and submitted the `F5 Contributor License Agreement
 to Openstack_CLA@f5.com prior to their code submission being included in this
 project.
 
-.. |Build Status| image:: https://travis-ci.org/F5Networks/f5-common-python.svg?branch=0.1
-    :target: https://travis-ci.org/F5Networks/f5-common-python
-    :alt: Build Status
-
-.. |Docs Build Status| image:: http://readthedocs.org/projects/f5-sdk/badge/?version=latest
-    :target: http://f5-sdk.readthedocs.org/en/latest/?badge=latest
-    :alt: Documentation Status
 

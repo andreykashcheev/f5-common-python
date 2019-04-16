@@ -43,6 +43,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.autosectionlabel',
+    'sphinx_copybutton'
 ]
 
 autodoc_default_flags = ['inherited-members', 'show-inheritance']
