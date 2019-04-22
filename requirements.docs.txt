@@ -1,7 +1,7 @@
 -e .
 
 # Docs requirements
-sphinx>=1.7
+sphinx<2.0
 git+https://github.com/f5devcentral/f5-sphinx-theme@master
 recommonmark
 sphinxjp.themes.basicstrap
